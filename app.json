@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Şanlıurfa SuperApp",
+    "slug": "sanliurfa-superapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "bundleIdentifier": "tr.gov.sanliurfa.superapp"
+    },
+    "android": {
+      "package": "tr.gov.sanliurfa.superapp"
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
+}
