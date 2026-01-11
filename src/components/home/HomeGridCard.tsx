@@ -34,7 +34,7 @@ export default function HomeGridCard({
         {subtitle}
       </Text>
       <View style={styles.arrowContainer}>
-        <Ionicons name="arrow-forward" size={20} color={colors.primary} />
+        <Ionicons name="arrow-forward" size={20} color={colors.accent} />
       </View>
     </TouchableOpacity>
   );
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin açık yüzey üzerinde
     marginBottom: 6,
   },
   subtitle: {
     fontSize: 13,
-    color: colors.textMuted,
+    color: colors.textMuted, // Koyu metin açık yüzey üzerinde
     lineHeight: 18,
     flex: 1,
   },

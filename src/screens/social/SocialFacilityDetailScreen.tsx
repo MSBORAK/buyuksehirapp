@@ -13,24 +13,24 @@ import {
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../theme/colors';
-import { touristSpots, TouristSpot } from '../../data/mockData';
+import { socialFacilities, SocialFacility } from '../../data/socialFacilitiesData';
 
 const { width } = Dimensions.get('window');
 
-export default function TouristDetailScreen() {
+export default function SocialFacilityDetailScreen() {
   const route = useRoute<any>();
   const navigation = useNavigation();
   const [language, setLanguage] = useState<'tr' | 'en' | 'ar'>('tr');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const spotId = route.params?.spotId;
-  const spot = touristSpots.find((s) => s.id === spotId);
+  const facilityId = route.params?.facilityId;
+  const facility = socialFacilities.find((f) => f.id === facilityId);
 
-  if (!spot) {
+  if (!facility) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>Yer bulunamadı</Text>
+          <Text style={styles.errorText}>Tesis bulunamadı</Text>
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.goBack()}
@@ -43,8 +43,59 @@ export default function TouristDetailScreen() {
   }
 
   const openMap = () => {
-    const url = `https://www.google.com/maps/search/?api=1&query=${spot.location.latitude},${spot.location.longitude}`;
+    const url = `https://www.google.com/maps/search/?api=1&query=${facility.location.latitude},${facility.location.longitude}`;
     Linking.openURL(url);
+  };
+
+  const callFacility = () => {
+    if (facility.phone) {
+      Linking.openURL(`tel:${facility.phone}`);
+    }
+  };
+
+  const getCategoryLabel = () => {
+    switch (facility.category) {
+      case 'sport':
+        return 'Spor Tesisi';
+      case 'library':
+        return 'Kütüphane';
+      case 'youth':
+        return 'Gençlik Merkezi';
+      case 'park':
+        return 'Park';
+      default:
+        return 'Tesis';
+    }
+  };
+
+  const getCategoryIcon = () => {
+    switch (facility.category) {
+      case 'sport':
+        return 'fitness';
+      case 'library':
+        return 'library';
+      case 'youth':
+        return 'people';
+      case 'park':
+        return 'leaf';
+      default:
+        return 'business';
+    }
+  };
+
+  const getCategoryColor = () => {
+    switch (facility.category) {
+      case 'sport':
+        return colors.primary;
+      case 'library':
+        return colors.secondary;
+      case 'youth':
+        return colors.accent;
+      case 'park':
+        return colors.accentLight;
+      default:
+        return colors.textMuted;
+    }
   };
 
   return (
@@ -64,7 +115,7 @@ export default function TouristDetailScreen() {
           }}
           scrollEventThrottle={16}
         >
-          {spot.images.map((image, index) => (
+          {facility.images.map((image, index) => (
             <Image
               key={index}
               source={{ uri: image }}
@@ -75,17 +126,19 @@ export default function TouristDetailScreen() {
         </ScrollView>
 
         {/* Image Pagination */}
-        <View style={styles.pagination}>
-          {spot.images.map((_, index) => (
-            <View
-              key={index}
-              style={[
-                styles.paginationDot,
-                currentImageIndex === index && styles.paginationDotActive,
-              ]}
-            />
-          ))}
-        </View>
+        {facility.images.length > 1 && (
+          <View style={styles.pagination}>
+            {facility.images.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.paginationDot,
+                  currentImageIndex === index && styles.paginationDotActive,
+                ]}
+              />
+            ))}
+          </View>
+        )}
 
         {/* Header Actions */}
         <View style={styles.headerActions}>
@@ -98,7 +151,9 @@ export default function TouristDetailScreen() {
           <View style={styles.actionButtonsRight}>
             <TouchableOpacity
               style={styles.actionButton}
-              onPress={() => setLanguage(language === 'tr' ? 'en' : language === 'en' ? 'ar' : 'tr')}
+              onPress={() =>
+                setLanguage(language === 'tr' ? 'en' : language === 'en' ? 'ar' : 'tr')
+              }
             >
               <Text style={styles.languageButton}>{language.toUpperCase()}</Text>
             </TouchableOpacity>
@@ -111,55 +166,78 @@ export default function TouristDetailScreen() {
         {/* Content */}
         <View style={styles.content}>
           <View style={styles.titleSection}>
-            <Text style={styles.title}>{spot.name[language]}</Text>
+            <View style={styles.titleLeft}>
+              <View
+                style={[
+                  styles.categoryBadge,
+                  { backgroundColor: getCategoryColor() },
+                ]}
+              >
+                <Ionicons name={getCategoryIcon() as any} size={20} color={colors.pale} />
+              </View>
+              <View style={styles.titleTextContainer}>
+                <Text style={styles.title}>{facility.name[language]}</Text>
+                <Text style={styles.categoryLabel}>{getCategoryLabel()}</Text>
+              </View>
+            </View>
             <View style={styles.ratingContainer}>
               <Ionicons name="star" size={20} color={colors.accent} />
-              <Text style={styles.rating}>{spot.rating}</Text>
+              <Text style={styles.rating}>{facility.rating}</Text>
             </View>
           </View>
 
-          {/* Tags */}
-          <View style={styles.tagsContainer}>
-            {spot.tags.map((tag, index) => (
-              <View key={index} style={styles.tag}>
-                <Text style={styles.tagText}>{tag}</Text>
-              </View>
-            ))}
-          </View>
-
           {/* Description */}
-          <Text style={styles.description}>{spot.description[language]}</Text>
+          <Text style={styles.description}>{facility.description[language]}</Text>
+
+          {/* Features */}
+          <View style={styles.featuresContainer}>
+            <Text style={styles.featuresTitle}>Özellikler</Text>
+            <View style={styles.featuresGrid}>
+              {facility.features.map((feature, index) => (
+                <View key={index} style={styles.featureTag}>
+                  <Ionicons name="checkmark-circle" size={16} color={colors.accent} />
+                  <Text style={styles.featureText}>{feature}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
 
           {/* Info Cards */}
           <View style={styles.infoGrid}>
             <View style={styles.infoCard}>
               <Ionicons name="time-outline" size={24} color={colors.accent} />
-              <Text style={styles.infoLabel}>Süre</Text>
-              <Text style={styles.infoValue}>{spot.visitDuration}</Text>
-            </View>
-            <View style={styles.infoCard}>
-              <Ionicons name="calendar-outline" size={24} color={colors.accent} />
-              <Text style={styles.infoLabel}>Açılış</Text>
-              <Text style={styles.infoValue} numberOfLines={2}>
-                {spot.openingHours}
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.infoGrid}>
-            <View style={styles.infoCard}>
-              <Ionicons name="ticket-outline" size={24} color={colors.secondary} />
-              <Text style={styles.infoLabel}>Bilet</Text>
-              <Text style={styles.infoValue}>{spot.ticketPrice}</Text>
+              <Text style={styles.infoLabel}>Açılış Saatleri</Text>
+              <Text style={styles.infoValue}>{facility.openingHours}</Text>
             </View>
             <View style={styles.infoCard}>
               <Ionicons name="location-outline" size={24} color={colors.secondary} />
               <Text style={styles.infoLabel}>Konum</Text>
               <Text style={styles.infoValue} numberOfLines={2}>
-                {spot.location.address[language as 'tr' | 'en'] || spot.location.address.en}
+                {facility.location.address[language as 'tr' | 'en']}
               </Text>
             </View>
           </View>
+
+          {/* Contact Info */}
+          {(facility.phone || facility.website) && (
+            <View style={styles.contactContainer}>
+              {facility.phone && (
+                <TouchableOpacity style={styles.contactButton} onPress={callFacility}>
+                  <Ionicons name="call" size={20} color={colors.pale} />
+                  <Text style={styles.contactButtonText}>Ara</Text>
+                </TouchableOpacity>
+              )}
+              {facility.website && (
+                <TouchableOpacity
+                  style={styles.contactButton}
+                  onPress={() => Linking.openURL(facility.website!)}
+                >
+                  <Ionicons name="globe" size={20} color={colors.pale} />
+                  <Text style={styles.contactButtonText}>Web Sitesi</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
 
           {/* Map Button */}
           <TouchableOpacity style={styles.mapButton} onPress={openMap}>
@@ -179,7 +257,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   scrollContent: {
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingBottom: 120,
   },
   image: {
     width,
@@ -200,7 +278,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
   paginationDotActive: {
-    backgroundColor: colors.accent, // Moss green
+    backgroundColor: colors.accent,
     width: 24,
   },
   headerActions: {
@@ -221,7 +299,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.surface, // Beige
+    backgroundColor: colors.surface,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: colors.primary,
@@ -230,16 +308,16 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
     borderWidth: 1,
-    borderColor: 'rgba(10,51,35,0.1)', // Dark green border
+    borderColor: 'rgba(10,51,35,0.1)',
   },
   languageButton: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
   },
   content: {
     padding: 20,
-    backgroundColor: colors.surface, // Beige
+    backgroundColor: colors.surface,
     marginTop: -20,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
@@ -255,17 +333,37 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginBottom: 16,
   },
+  titleLeft: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    flex: 1,
+  },
+  categoryBadge: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleTextContainer: {
+    flex: 1,
+    gap: 4,
+  },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.textOnSurface, // Dark green text on beige
-    flex: 1,
-    marginRight: 12,
+    color: colors.textOnSurface,
+  },
+  categoryLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.textMuted,
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surfaceAlt, // Lighter beige
+    backgroundColor: colors.surfaceAlt,
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 16,
@@ -279,44 +377,50 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textOnSurface, // Dark green text on beige
-  },
-  tagsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginBottom: 20,
-  },
-  tag: {
-    backgroundColor: colors.surfaceAlt, // Lighter beige
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-    shadowColor: colors.cardShadow,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  tagText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
   },
   description: {
     fontSize: 16,
     lineHeight: 24,
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
     marginBottom: 24,
+  },
+  featuresContainer: {
+    marginBottom: 24,
+  },
+  featuresTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.textOnSurface,
+    marginBottom: 12,
+  },
+  featuresGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  featureTag: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.surfaceAlt,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    gap: 6,
+  },
+  featureText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: colors.textOnSurface,
   },
   infoGrid: {
     flexDirection: 'row',
     gap: 12,
-    marginBottom: 12,
+    marginBottom: 24,
   },
   infoCard: {
     flex: 1,
-    backgroundColor: colors.surfaceAlt, // Lighter beige
+    backgroundColor: colors.surfaceAlt,
     padding: 16,
     borderRadius: 16,
     alignItems: 'center',
@@ -327,30 +431,53 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
     borderWidth: 1,
-    borderColor: 'rgba(10,51,35,0.08)', // Subtle dark green border
+    borderColor: 'rgba(10,51,35,0.08)',
   },
   infoLabel: {
     fontSize: 12,
     fontWeight: '600',
-    color: colors.textMuted, // Moss green dark
+    color: colors.textMuted,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   infoValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
     textAlign: 'center',
+  },
+  contactContainer: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 24,
+  },
+  contactButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.secondary,
+    padding: 14,
+    borderRadius: 16,
+    gap: 8,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  contactButtonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.pale,
   },
   mapButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primary, // Dark green
+    backgroundColor: colors.primary,
     padding: 16,
     borderRadius: 16,
-    marginTop: 24,
-    marginBottom: 24, // Alt boşluk eklendi
     gap: 12,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
@@ -358,12 +485,12 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
     borderWidth: 2,
-    borderColor: colors.accent, // Moss green border
+    borderColor: colors.accent,
   },
   mapButtonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
     flex: 1,
     textAlign: 'center',
   },
@@ -387,6 +514,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
 });

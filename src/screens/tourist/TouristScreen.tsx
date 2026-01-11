@@ -11,6 +11,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../theme/colors';
+import { useSwipeGesture } from '../../hooks/useSwipeGesture';
 import { touristSpots } from '../../data/mockData';
 import TouristSpotCard from '../../components/tourist/TouristSpotCard';
 
@@ -18,6 +19,7 @@ type Language = 'tr' | 'en' | 'ar';
 
 export default function TouristScreen() {
   const navigation = useNavigation<any>();
+  const swipeHandlers = useSwipeGesture('Tourist');
   const [language, setLanguage] = useState<Language>('tr');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -33,7 +35,7 @@ export default function TouristScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} {...swipeHandlers}>
       {/* Header */}
       <View style={styles.header}>
         <View>
@@ -120,14 +122,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 16,
-    backgroundColor: colors.surface,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.hairline,
+    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde
   },
   headerSubtitle: {
     fontSize: 14,
@@ -138,55 +138,70 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: colors.surface, // Beige yüzey
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  languageContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: colors.surface,
-    gap: 8,
-  },
-  languageButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: colors.surfaceAlt,
-  },
-  languageButtonActive: {
-    backgroundColor: colors.primary,
-  },
-  languageText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.textMuted,
-  },
-  languageTextActive: {
-    color: colors.surface,
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.surface,
-    marginHorizontal: 16,
-    marginTop: 12,
-    marginBottom: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 16,
-    gap: 12,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 3,
   },
+  languageContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: 'transparent',
+    gap: 8,
+  },
+  languageButton: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 24, // Daha oval
+    backgroundColor: colors.surface, // Beige yüzey
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  languageButtonActive: {
+    backgroundColor: colors.primary, // Dark green - aktif
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 6,
+  },
+  languageText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+  },
+  languageTextActive: {
+    color: colors.pale, // Açık metin dark green üzerinde
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.surface, // Beige yüzey
+    marginHorizontal: 16,
+    marginTop: 12,
+    marginBottom: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderRadius: 20, // Daha yuvarlak
+    gap: 12,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 6,
+  },
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
     padding: 0,
   },
   scrollView: {
@@ -194,6 +209,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
+    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
   },
   bottomSpacing: {
     height: 32,

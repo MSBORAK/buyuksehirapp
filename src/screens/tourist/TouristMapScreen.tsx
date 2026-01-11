@@ -62,7 +62,7 @@ export default function TouristMapScreen() {
             Tüm konumları görmek için haritaya git
           </Text>
           <TouchableOpacity style={styles.mapButton} onPress={openAllSpotsInMap}>
-            <Ionicons name="map" size={20} color={colors.surface} />
+            <Ionicons name="map" size={20} color={colors.pale} />
             <Text style={styles.mapButtonText}>Google Maps'te Aç</Text>
           </TouchableOpacity>
         </View>
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   mapButtonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
   },
   markersContainer: {
     ...StyleSheet.absoluteFillObject,

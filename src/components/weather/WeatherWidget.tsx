@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../theme/colors';
+import WeatherModal from './WeatherModal';
 
 export default function WeatherWidget() {
+  const [modalVisible, setModalVisible] = useState(false);
+  
   // Mock data - later integrate with OpenWeather API
   const temperature = 22;
   const condition = 'Açık';
   const location = 'Şanlıurfa';
 
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.9}>
-      <View style={styles.content}>
-        <View style={styles.leftSection}>
-          <Ionicons name="partly-sunny" size={40} color={colors.gold} />
-          <View style={styles.tempContainer}>
-            <Text style={styles.temperature}>{temperature}°</Text>
-            <Text style={styles.condition}>{condition}</Text>
+    <>
+      <TouchableOpacity
+        style={styles.container}
+        activeOpacity={0.9}
+        onPress={() => setModalVisible(true)}
+      >
+        <View style={styles.content}>
+          <View style={styles.leftSection}>
+            <Ionicons name="partly-sunny" size={40} color={colors.accent} />
+            <View style={styles.tempContainer}>
+              <Text style={styles.temperature}>{temperature}°</Text>
+              <Text style={styles.condition}>{condition}</Text>
+            </View>
+          </View>
+          <View style={styles.rightSection}>
+            <Text style={styles.location}>{location}</Text>
+            <Ionicons name="location" size={16} color={colors.textMuted} />
           </View>
         </View>
-        <View style={styles.rightSection}>
-          <Text style={styles.location}>{location}</Text>
-          <Ionicons name="location" size={16} color={colors.textMuted} />
-        </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+
+      <WeatherModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        currentTemp={temperature}
+        currentCondition={condition}
+        location={location}
+      />
+    </>
   );
 }
 
@@ -57,11 +74,11 @@ const styles = StyleSheet.create({
   temperature: {
     fontSize: 32,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin açık yüzey üzerinde
   },
   condition: {
     fontSize: 14,
-    color: colors.textMuted,
+    color: colors.textMuted, // Koyu metin açık yüzey üzerinde
   },
   rightSection: {
     flexDirection: 'row',
@@ -70,7 +87,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 14,
-    color: colors.textMuted,
+    color: colors.textMuted, // Koyu metin açık yüzey üzerinde
     fontWeight: '500',
   },
 });

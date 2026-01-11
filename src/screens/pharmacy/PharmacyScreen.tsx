@@ -9,11 +9,13 @@ import {
   TextInput,
   Linking,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../theme/colors';
 import { pharmacies, Pharmacy } from '../../data/pharmacyData';
 
 export default function PharmacyScreen() {
+  const navigation = useNavigation();
   const [showOnlyOnDuty, setShowOnlyOnDuty] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -45,7 +47,13 @@ export default function PharmacyScreen() {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <View>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons name="arrow-back" size={24} color={colors.text} />
+        </TouchableOpacity>
+        <View style={styles.headerContent}>
           <Text style={styles.headerTitle}>Nöbetçi Eczaneler</Text>
           <Text style={styles.headerSubtitle}>
             {onDutyCount} eczane nöbetçi
@@ -79,7 +87,7 @@ export default function PharmacyScreen() {
           <Ionicons
             name={showOnlyOnDuty ? 'checkmark-circle' : 'ellipse-outline'}
             size={20}
-            color={showOnlyOnDuty ? colors.primary : colors.textMuted}
+            color={showOnlyOnDuty ? colors.pale : colors.textOnSurface}
           />
           <Text
             style={[
@@ -131,7 +139,7 @@ export default function PharmacyScreen() {
                   <Text style={styles.pharmacyName}>{pharmacy.name}</Text>
                   {pharmacy.isOnDuty && (
                     <View style={styles.onDutyBadge}>
-                      <Ionicons name="medical" size={14} color={colors.surface} />
+                      <Ionicons name="medical" size={14} color={colors.pale} />
                       <Text style={styles.onDutyText}>Nöbetçi</Text>
                     </View>
                   )}
@@ -168,7 +176,7 @@ export default function PharmacyScreen() {
                   callPharmacy(pharmacy.phone);
                 }}
               >
-                <Ionicons name="call" size={18} color={colors.surface} />
+                <Ionicons name="call" size={18} color={colors.pale} />
                 <Text style={styles.callButtonText}>Ara</Text>
               </TouchableOpacity>
             </View>
@@ -198,19 +206,33 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 16,
-    backgroundColor: colors.surface,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.hairline,
+    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
+    gap: 12,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.surface, // Beige yüzey
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  headerContent: {
+    flex: 1,
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde
   },
   headerSubtitle: {
     fontSize: 14,
@@ -221,57 +243,72 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: colors.surface, // Beige yüzey
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  filterContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: colors.surface,
-  },
-  filterButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 20,
-    backgroundColor: colors.surfaceAlt,
-    gap: 8,
-  },
-  filterButtonActive: {
-    backgroundColor: colors.primary + '15',
-  },
-  filterText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.textMuted,
-  },
-  filterTextActive: {
-    color: colors.primary,
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.surface,
-    marginHorizontal: 16,
-    marginTop: 8,
-    marginBottom: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 16,
-    gap: 12,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 3,
   },
+  filterContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: 'transparent',
+  },
+  filterButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 24, // Daha oval
+    backgroundColor: colors.surface, // Beige yüzey
+    gap: 8,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  filterButtonActive: {
+    backgroundColor: colors.primary, // Dark green - aktif
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 6,
+  },
+  filterText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+  },
+  filterTextActive: {
+    color: colors.pale, // Açık metin dark green üzerinde
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.surface, // Beige yüzey
+    marginHorizontal: 16,
+    marginTop: 8,
+    marginBottom: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderRadius: 20, // Daha yuvarlak
+    gap: 12,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 6,
+  },
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
     padding: 0,
   },
   scrollView: {
@@ -279,21 +316,22 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
+    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
   },
   pharmacyCard: {
-    backgroundColor: colors.surface,
-    borderRadius: 16,
+    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 20,
     padding: 20,
     marginBottom: 12,
     shadowColor: colors.cardShadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
     shadowRadius: 12,
-    elevation: 4,
+    elevation: 6,
   },
   pharmacyCardOnDuty: {
     borderLeftWidth: 4,
-    borderLeftColor: colors.primary,
+    borderLeftColor: colors.primary, // Dark green border
   },
   pharmacyHeader: {
     marginBottom: 16,
@@ -310,22 +348,27 @@ const styles = StyleSheet.create({
   pharmacyName: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
     flex: 1,
   },
   onDutyBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary, // Dark green
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
     gap: 4,
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   onDutyText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
   },
   pharmacyAddress: {
     flexDirection: 'row',
@@ -360,16 +403,21 @@ const styles = StyleSheet.create({
   callButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary, // Dark green
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 12,
+    borderRadius: 16,
     gap: 6,
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
   },
   callButtonText: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
   },
   emptyContainer: {
     flex: 1,
@@ -381,7 +429,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde
   },
   emptySubtext: {
     fontSize: 14,

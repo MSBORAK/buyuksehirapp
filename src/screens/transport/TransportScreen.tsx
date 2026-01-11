@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../theme/colors';
+import { useSwipeGesture } from '../../hooks/useSwipeGesture';
 import { transportRoutes, UrfaKartInfo } from '../../data/transportData';
 
 // Mock UrfaKart data
@@ -25,6 +26,7 @@ const mockUrfaKart: UrfaKartInfo = {
 };
 
 export default function TransportScreen() {
+  const swipeHandlers = useSwipeGesture('Transport');
   const [activeTab, setActiveTab] = useState<'balance' | 'routes' | 'recharge'>('balance');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -35,7 +37,7 @@ export default function TransportScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} {...swipeHandlers}>
       {/* Header */}
       <View style={styles.header}>
         <View>
@@ -53,7 +55,7 @@ export default function TransportScreen() {
           <Ionicons
             name="card"
             size={20}
-            color={activeTab === 'balance' ? colors.primary : colors.textMuted}
+            color={activeTab === 'balance' ? colors.pale : colors.textOnSurface}
           />
           <Text
             style={[
@@ -71,7 +73,7 @@ export default function TransportScreen() {
           <Ionicons
             name="bus"
             size={20}
-            color={activeTab === 'routes' ? colors.primary : colors.textMuted}
+            color={activeTab === 'routes' ? colors.pale : colors.textOnSurface}
           />
           <Text
             style={[
@@ -89,7 +91,7 @@ export default function TransportScreen() {
           <Ionicons
             name="add-circle"
             size={20}
-            color={activeTab === 'recharge' ? colors.primary : colors.textMuted}
+            color={activeTab === 'recharge' ? colors.pale : colors.textOnSurface}
           />
           <Text
             style={[
@@ -129,7 +131,9 @@ export default function TransportScreen() {
               {mockUrfaKart.lastTransaction && (
                 <View style={styles.transactionCard}>
                   <View style={styles.transactionHeader}>
-                    <Ionicons name="time" size={20} color={colors.textMuted} />
+                    <View style={styles.transactionIconContainer}>
+                      <Ionicons name="time" size={18} color={colors.primary} />
+                    </View>
                     <Text style={styles.transactionTitle}>Son İşlem</Text>
                   </View>
                   <View style={styles.transactionDetails}>
@@ -285,14 +289,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 16,
-    backgroundColor: colors.surface,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.hairline,
+    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde
   },
   headerSubtitle: {
     fontSize: 14,
@@ -301,9 +303,9 @@ const styles = StyleSheet.create({
   },
   tabs: {
     flexDirection: 'row',
-    backgroundColor: colors.surface,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
+    backgroundColor: 'transparent',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     gap: 8,
   },
   tab: {
@@ -311,27 +313,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
-    borderRadius: 12,
-    backgroundColor: colors.surfaceAlt,
-    gap: 6,
+    paddingVertical: 14,
+    borderRadius: 16,
+    backgroundColor: colors.surface, // Beige yüzey
+    gap: 8,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
   },
   tabActive: {
-    backgroundColor: colors.primary + '15',
+    backgroundColor: colors.primary, // Dark green - aktif
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 6,
   },
   tabText: {
     fontSize: 13,
-    fontWeight: '600',
-    color: colors.textMuted,
+    fontWeight: '700',
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   tabTextActive: {
-    color: colors.primary,
+    color: colors.pale, // Açık metin dark green üzerinde
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 16,
+    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
   },
   content: {
     gap: 16,
@@ -343,6 +356,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 20,
     padding: 24,
+    borderWidth: 2.5,
+    borderColor: colors.accent, // Moss green çerçeve
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.2,
@@ -358,12 +373,12 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
   },
   cardNumber: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
     letterSpacing: 2,
     marginBottom: 24,
   },
@@ -372,7 +387,7 @@ const styles = StyleSheet.create({
   },
   balanceLabel: {
     fontSize: 14,
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
     opacity: 0.9,
     marginBottom: 8,
   },
@@ -382,25 +397,33 @@ const styles = StyleSheet.create({
     color: colors.gold,
   },
   transactionCard: {
-    backgroundColor: colors.surface,
-    borderRadius: 16,
+    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 20,
     padding: 20,
     shadowColor: colors.cardShadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 6,
   },
   transactionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-    gap: 8,
+    gap: 10,
+  },
+  transactionIconContainer: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.primary + '15',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   transactionTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   transactionDetails: {
     gap: 12,
@@ -417,10 +440,10 @@ const styles = StyleSheet.create({
   transactionValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   transactionAmount: {
-    color: colors.primary,
+    color: colors.primary, // Dark green - tutar rengi
   },
   quickActions: {
     flexDirection: 'row',
@@ -428,16 +451,16 @@ const styles = StyleSheet.create({
   },
   quickActionButton: {
     flex: 1,
-    backgroundColor: colors.surface,
-    borderRadius: 16,
+    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 20,
     padding: 20,
     alignItems: 'center',
     gap: 12,
     shadowColor: colors.cardShadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 6,
   },
   quickActionIcon: {
     width: 56,
@@ -449,40 +472,40 @@ const styles = StyleSheet.create({
   },
   quickActionText: {
     fontSize: 14,
-    fontWeight: '600',
-    color: colors.text,
+    fontWeight: '700',
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
     textAlign: 'center',
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surface, // Beige yüzey
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 16,
+    paddingVertical: 14,
+    borderRadius: 20,
     gap: 12,
     shadowColor: colors.cardShadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 6,
     marginBottom: 8,
   },
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
     padding: 0,
   },
   routeCard: {
-    backgroundColor: colors.surface,
-    borderRadius: 16,
+    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 20,
     padding: 20,
     shadowColor: colors.cardShadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
     shadowRadius: 12,
-    elevation: 4,
+    elevation: 6,
     marginBottom: 12,
   },
   routeHeader: {
@@ -501,7 +524,7 @@ const styles = StyleSheet.create({
   routeNumber: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on primary background
   },
   routeInfo: {
     flex: 1,
@@ -510,7 +533,7 @@ const styles = StyleSheet.create({
   routeName: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   routeStops: {
     flexDirection: 'row',
@@ -536,25 +559,25 @@ const styles = StyleSheet.create({
   },
   routeDetailText: {
     fontSize: 13,
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
     fontWeight: '500',
   },
   rechargeCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surface, // Beige yüzey
     borderRadius: 20,
     padding: 32,
     alignItems: 'center',
     gap: 16,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.15,
     shadowRadius: 16,
     elevation: 6,
   },
   rechargeTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   rechargeDescription: {
     fontSize: 15,
@@ -582,7 +605,7 @@ const styles = StyleSheet.create({
   rechargeOptionText: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   rechargeInfo: {
     flexDirection: 'row',

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../theme/colors';
+import { useSwipeGesture } from '../hooks/useSwipeGesture';
 import StoryBar from '../components/story/StoryBar';
 import WeatherWidget from '../components/weather/WeatherWidget';
 import NewsSlider from '../components/news/NewsSlider';
@@ -17,9 +18,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
+  const swipeHandlers = useSwipeGesture('Home');
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} {...swipeHandlers}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -30,9 +32,17 @@ export default function HomeScreen() {
             <Text style={styles.headerTitle}>Şanlıurfa</Text>
             <Text style={styles.headerSubtitle}>Büyükşehir Belediyesi</Text>
           </View>
-          <TouchableOpacity style={styles.notificationButton}>
-            <Ionicons name="notifications-outline" size={24} color={colors.text} />
-          </TouchableOpacity>
+          <View style={styles.headerButtons}>
+            <TouchableOpacity style={styles.notificationButton}>
+              <Ionicons name="notifications-outline" size={24} color={colors.primary} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.settingsButton}
+              onPress={() => navigation.navigate('Settings')}
+            >
+              <Ionicons name="settings-outline" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Story Bar */}
@@ -69,14 +79,14 @@ export default function HomeScreen() {
                 title="Kültür-Sanat"
                 subtitle="Etkinlik takvimi ve programlar"
                 icon="calendar"
-                iconColor={colors.primaryLight}
+                iconColor={colors.secondary}
                 onPress={() => navigation.navigate('Calendar')}
               />
               <HomeGridCard
                 title="Nöbetçi Eczaneler"
                 subtitle="Yakınındaki eczaneleri bul"
                 icon="medical"
-                iconColor="#E91E63"
+                iconColor={colors.rosy}
                 onPress={() => navigation.navigate('Pharmacy')}
               />
             </View>
@@ -96,28 +106,41 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   scrollContent: {
-    paddingBottom: 24,
+    paddingTop: 0, // Üst boşluk yok
+    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingTop: 12,
+    paddingTop: 12, // Biraz aşağı indirildi
     paddingBottom: 8,
-    backgroundColor: colors.surface,
+    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde (header şeffaf)
   },
   headerSubtitle: {
     fontSize: 14,
-    color: colors.textMuted,
+    color: colors.textMuted, // Açık metin koyu arka plan üzerinde
     marginTop: 2,
   },
+  headerButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
   notificationButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: colors.surfaceAlt,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  settingsButton: {
     width: 44,
     height: 44,
     borderRadius: 22,
@@ -132,7 +155,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde
     marginBottom: 16,
   },
   grid: {

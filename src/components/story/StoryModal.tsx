@@ -38,18 +38,19 @@ export default function StoryModal({ story, visible, onClose }: StoryModalProps)
           style={styles.image}
           resizeMode="cover"
         />
-        <View style={styles.overlay}>
+        <View style={styles.overlay} pointerEvents="box-none">
           <TouchableOpacity
             style={styles.closeButton}
             onPress={onClose}
             activeOpacity={0.8}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="close" size={32} color={colors.surface} />
+            <Ionicons name="close" size={32} color={colors.pale} />
           </TouchableOpacity>
           <View style={styles.content}>
             <View style={styles.titleContainer}>
               <View style={styles.titleBadge}>
-                <Ionicons name="sparkles" size={20} color={colors.gold} />
+                <Ionicons name="star" size={20} color={colors.gold} />
                 <Text style={styles.title}>{story.title}</Text>
               </View>
             </View>
@@ -63,7 +64,7 @@ export default function StoryModal({ story, visible, onClose }: StoryModalProps)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: colors.primary, // Off-Navy - Luxury dark background
   },
   image: {
     width,
@@ -80,9 +81,10 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 10,
   },
   content: {
     flex: 1,
@@ -105,6 +107,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark background
   },
 });

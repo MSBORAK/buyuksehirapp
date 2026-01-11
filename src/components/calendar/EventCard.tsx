@@ -49,11 +49,11 @@ export default function EventCard({
       case 'theater':
         return colors.gold;
       case 'exhibition':
-        return '#7B1FA2';
+        return colors.secondary; // Midnight green
       case 'festival':
-        return '#E91E63';
+        return colors.rosy; // Rosy brown
       case 'workshop':
-        return '#0097A7';
+        return colors.accent; // Moss green
       default:
         return colors.textMuted;
     }
@@ -118,15 +118,15 @@ export default function EventCard({
 
           <View style={styles.footer}>
             <View style={styles.footerItem}>
-              <Ionicons name="calendar-outline" size={14} color={colors.surface} />
+              <Ionicons name="calendar-outline" size={14} color={colors.pale} />
               <Text style={styles.footerText}>{formatDate(event.date)}</Text>
             </View>
             <View style={styles.footerItem}>
-              <Ionicons name="time-outline" size={14} color={colors.surface} />
+              <Ionicons name="time-outline" size={14} color={colors.pale} />
               <Text style={styles.footerText}>{event.time}</Text>
             </View>
             <View style={styles.footerItem}>
-              <Ionicons name="location-outline" size={14} color={colors.surface} />
+              <Ionicons name="location-outline" size={14} color={colors.pale} />
               <Text style={styles.footerText} numberOfLines={1}>
                 {event.location.name}
               </Text>
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   featuredText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -195,26 +195,32 @@ const styles = StyleSheet.create({
   categoryBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surface, // Beige yüzey
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
     gap: 6,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 3,
   },
   categoryText: {
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '700',
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde (overlay üzerinde ama badge içinde)
   },
   title: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
     marginBottom: 8,
     lineHeight: 26,
   },
   description: {
     fontSize: 14,
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
     opacity: 0.95,
     marginBottom: 16,
     lineHeight: 20,
@@ -232,7 +238,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
     opacity: 0.9,
   },
 });

@@ -63,7 +63,7 @@ export default function NewsSlider() {
                   {item.summary}
                 </Text>
                 <View style={styles.newsFooter}>
-                  <Ionicons name="calendar-outline" size={14} color={colors.surface} />
+                  <Ionicons name="calendar-outline" size={14} color={colors.pale} />
                   <Text style={styles.newsDate}>{item.date}</Text>
                 </View>
               </View>
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.text, // Açık metin koyu arka plan üzerinde
   },
   moreText: {
     fontSize: 14,
-    color: colors.primary,
+    color: colors.accentLight, // Moss green light - Koyu arka plan üzerinde görünür
     fontWeight: '600',
   },
   scrollContent: {
@@ -139,12 +139,12 @@ const styles = StyleSheet.create({
   newsTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
     marginBottom: 8,
   },
   newsSummary: {
     fontSize: 14,
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
     opacity: 0.9,
     marginBottom: 12,
   },
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   newsDate: {
     fontSize: 12,
-    color: colors.surface,
+    color: colors.pale, // Pale text on dark overlay
     opacity: 0.8,
   },
   pagination: {

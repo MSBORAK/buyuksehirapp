@@ -95,13 +95,13 @@ export default function TouristSpotCard({
 
           <View style={styles.footer}>
             <View style={styles.footerItem}>
-              <Ionicons name="time-outline" size={14} color={colors.textMuted} />
+              <Ionicons name="time-outline" size={14} color={colors.pale} />
               <Text style={styles.footerText}>{spot.visitDuration}</Text>
             </View>
             <View style={styles.footerItem}>
-              <Ionicons name="location-outline" size={14} color={colors.textMuted} />
+              <Ionicons name="location-outline" size={14} color={colors.pale} />
               <Text style={styles.footerText} numberOfLines={1}>
-                {spot.location.address[language] || spot.location.address.en}
+                {(spot.location.address as any)[language] || spot.location.address.en || spot.location.address.tr}
               </Text>
             </View>
           </View>
@@ -146,29 +146,40 @@ const styles = StyleSheet.create({
   categoryBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surface, // Beige yüzey
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
     gap: 6,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 3,
   },
   categoryText: {
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '700',
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.9)',
+    backgroundColor: colors.surface, // Beige yüzey (beyaz yerine)
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 12,
     gap: 4,
+    shadowColor: colors.cardShadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 3,
   },
   rating: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
   },
   name: {
     fontSize: 24,
