@@ -36,7 +36,7 @@ export interface SocialFacility {
 }
 
 export const socialFacilities: SocialFacility[] = [
-  // Spor Tesisleri
+
   {
     id: 'sport-1',
     name: {
@@ -71,40 +71,6 @@ export const socialFacilities: SocialFacility[] = [
     isFeatured: true,
   },
   {
-    id: 'sport-2',
-    name: {
-      tr: 'Şanlıurfa Kapalı Spor Salonu',
-      en: 'Şanlıurfa Indoor Sports Hall',
-      ar: 'قاعة رياضية مغلقة شانلي أورفا',
-    },
-    category: 'sport',
-    description: {
-      tr: 'Basketbol, voleybol ve diğer salon sporları için modern kapalı spor salonu.',
-      en: 'Modern indoor sports hall for basketball, volleyball and other indoor sports.',
-      ar: 'قاعة رياضية مغلقة حديثة لكرة السلة والكرة الطائرة والرياضات الداخلية الأخرى.',
-    },
-    shortDescription: {
-      tr: 'Basketbol ve voleybol için modern spor salonu',
-      en: 'Modern sports hall for basketball and volleyball',
-      ar: 'قاعة رياضية حديثة لكرة السلة والكرة الطائرة',
-    },
-    images: ['https://images.unsplash.com/photo-1546519638-68e109498ffc'],
-    location: {
-      latitude: 37.1589,
-      longitude: 38.7921,
-      address: {
-        tr: 'Haliliye, Şanlıurfa',
-        en: 'Haliliye, Şanlıurfa',
-      },
-    },
-    openingHours: '08:00 - 20:00',
-    phone: '+90 414 123 4568',
-    features: ['Basketbol Sahası', 'Voleybol Sahası', 'Seyirci Tribünü', 'Soyunma Odaları'],
-    rating: 4.6,
-    isFeatured: false,
-  },
-  // Kütüphaneler
-  {
     id: 'library-1',
     name: {
       tr: 'Şanlıurfa Merkez Kütüphanesi',
@@ -137,39 +103,6 @@ export const socialFacilities: SocialFacility[] = [
     rating: 4.7,
     isFeatured: true,
   },
-  {
-    id: 'library-2',
-    name: {
-      tr: 'Haliliye Halk Kütüphanesi',
-      en: 'Haliliye Public Library',
-      ar: 'مكتبة حلبية العامة',
-    },
-    category: 'library',
-    description: {
-      tr: 'Halka açık kütüphane, kitap okuma ve araştırma imkanları.',
-      en: 'Public library offering book reading and research opportunities.',
-      ar: 'مكتبة عامة تقدم فرص قراءة الكتب والبحث.',
-    },
-    shortDescription: {
-      tr: 'Halka açık kütüphane ve okuma alanları',
-      en: 'Public library and reading areas',
-      ar: 'مكتبة عامة ومناطق قراءة',
-    },
-    images: ['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'],
-    location: {
-      latitude: 37.1523,
-      longitude: 38.7889,
-      address: {
-        tr: 'Haliliye, Şanlıurfa',
-        en: 'Haliliye, Şanlıurfa',
-      },
-    },
-    openingHours: '09:00 - 17:00',
-    features: ['Okuma Salonu', 'Kitap Ödünç Alma', 'Çocuk Bölümü'],
-    rating: 4.5,
-    isFeatured: false,
-  },
-  // Gençlik Merkezleri
   {
     id: 'youth-1',
     name: {
@@ -204,44 +137,11 @@ export const socialFacilities: SocialFacility[] = [
     isFeatured: true,
   },
   {
-    id: 'youth-2',
-    name: {
-      tr: 'Haliliye Gençlik Merkezi',
-      en: 'Haliliye Youth Center',
-      ar: 'مركز شباب حلبية',
-    },
-    category: 'youth',
-    description: {
-      tr: 'Gençlerin sosyal ve kültürel gelişimine katkı sağlayan aktivite merkezi.',
-      en: 'Activity center contributing to the social and cultural development of young people.',
-      ar: 'مركز أنشطة يساهم في التنمية الاجتماعية والثقافية للشباب.',
-    },
-    shortDescription: {
-      tr: 'Sosyal ve kültürel aktivite merkezi',
-      en: 'Social and cultural activity center',
-      ar: 'مركز الأنشطة الاجتماعية والثقافية',
-    },
-    images: ['https://images.unsplash.com/photo-1522071820081-009f0129c71c'],
-    location: {
-      latitude: 37.1556,
-      longitude: 38.7901,
-      address: {
-        tr: 'Haliliye, Şanlıurfa',
-        en: 'Haliliye, Şanlıurfa',
-      },
-    },
-    openingHours: '10:00 - 18:00',
-    features: ['Kurslar', 'Sosyal Aktiviteler', 'Rehberlik'],
-    rating: 4.6,
-    isFeatured: false,
-  },
-  // Parklar ve Yeşil Alanlar
-  {
     id: 'park-1',
     name: {
-      tr: 'Balıklıgöl Parkı',
-      en: 'Balıklıgöl Park',
-      ar: 'حديقة باليكليغول',
+      tr: 'Balıklıgöl',
+      en: 'Balıklıgöl',
+      ar: 'باليكليغول',
     },
     category: 'park',
     description: {
@@ -266,70 +166,6 @@ export const socialFacilities: SocialFacility[] = [
     openingHours: '24 saat açık',
     features: ['Yürüyüş Yolları', 'Çocuk Oyun Alanı', 'Dinlenme Alanları', 'Kafeterya', 'Wifi'],
     rating: 4.9,
-    isFeatured: true,
-  },
-  {
-    id: 'park-2',
-    name: {
-      tr: 'Şanlıurfa Kent Parkı',
-      en: 'Şanlıurfa City Park',
-      ar: 'حديقة مدينة شانلي أورفا',
-    },
-    category: 'park',
-    description: {
-      tr: 'Modern kent parkı, spor alanları, piknik alanları ve geniş yeşil alanlar.',
-      en: 'Modern city park with sports areas, picnic areas and extensive green spaces.',
-      ar: 'حديقة مدينة حديثة مع مناطق رياضية ومناطق نزهة ومساحات خضراء واسعة.',
-    },
-    shortDescription: {
-      tr: 'Modern kent parkı ve spor alanları',
-      en: 'Modern city park and sports areas',
-      ar: 'حديقة مدينة حديثة ومناطق رياضية',
-    },
-    images: ['https://images.unsplash.com/photo-1473773508845-188df298d2d1'],
-    location: {
-      latitude: 37.1701,
-      longitude: 38.7989,
-      address: {
-        tr: 'Eyyübiye, Şanlıurfa',
-        en: 'Eyyübiye, Şanlıurfa',
-      },
-    },
-    openingHours: '06:00 - 23:00',
-    features: ['Spor Alanları', 'Piknik Alanları', 'Yürüyüş Yolları', 'Çocuk Oyun Alanı', 'Kafeterya'],
-    rating: 4.7,
-    isFeatured: false,
-  },
-  {
-    id: 'park-3',
-    name: {
-      tr: 'Göbeklitepe Kültür Parkı',
-      en: 'Göbeklitepe Culture Park',
-      ar: 'حديقة غوبيكلي تبه الثقافية',
-    },
-    category: 'park',
-    description: {
-      tr: 'Göbeklitepe teması ile tasarlanmış kültür parkı, açık hava müzesi ve rekreasyon alanları.',
-      en: 'Culture park designed with Göbeklitepe theme, open-air museum and recreation areas.',
-      ar: 'حديقة ثقافية مصممة بموضوع غوبيكلي تبه ومتحف في الهواء الطلق ومناطق ترفيهية.',
-    },
-    shortDescription: {
-      tr: 'Göbeklitepe temalı kültür parkı',
-      en: 'Göbeklitepe themed culture park',
-      ar: 'حديقة ثقافية بموضوع غوبيكلي تبه',
-    },
-    images: ['https://images.unsplash.com/photo-1469474968028-56623f02e42e'],
-    location: {
-      latitude: 37.2233,
-      longitude: 38.9222,
-      address: {
-        tr: 'Örencik, Şanlıurfa',
-        en: 'Örencik, Şanlıurfa',
-      },
-    },
-    openingHours: '08:00 - 20:00',
-    features: ['Açık Hava Müzesi', 'Yürüyüş Yolları', 'Kafeterya', 'Sergi Alanları'],
-    rating: 4.8,
     isFeatured: true,
   },
 ];

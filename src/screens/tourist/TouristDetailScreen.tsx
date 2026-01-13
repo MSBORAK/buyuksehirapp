@@ -67,7 +67,7 @@ export default function TouristDetailScreen() {
           {spot.images.map((image, index) => (
             <Image
               key={index}
-              source={{ uri: image }}
+              source={typeof image === 'string' ? { uri: image } : image}
               style={styles.image}
               resizeMode="cover"
             />
@@ -112,10 +112,6 @@ export default function TouristDetailScreen() {
         <View style={styles.content}>
           <View style={styles.titleSection}>
             <Text style={styles.title}>{spot.name[language]}</Text>
-            <View style={styles.ratingContainer}>
-              <Ionicons name="star" size={20} color={colors.accent} />
-              <Text style={styles.rating}>{spot.rating}</Text>
-            </View>
           </View>
 
           {/* Tags */}
@@ -179,7 +175,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   scrollContent: {
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingBottom: 120,
   },
   image: {
     width,
@@ -200,7 +196,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
   paginationDotActive: {
-    backgroundColor: colors.accent, // Moss green
+    backgroundColor: colors.accent,
     width: 24,
   },
   headerActions: {
@@ -221,7 +217,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.surface, // Beige
+    backgroundColor: colors.surface,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: colors.primary,
@@ -230,16 +226,16 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
     borderWidth: 1,
-    borderColor: 'rgba(10,51,35,0.1)', // Dark green border
+    borderColor: 'rgba(10,51,35,0.1)',
   },
   languageButton: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
   },
   content: {
     padding: 20,
-    backgroundColor: colors.surface, // Beige
+    backgroundColor: colors.surface,
     marginTop: -20,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
@@ -258,14 +254,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
     flex: 1,
     marginRight: 12,
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surfaceAlt, // Lighter beige
+    backgroundColor: colors.surfaceAlt,
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 16,
@@ -279,7 +275,7 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
   },
   tagsContainer: {
     flexDirection: 'row',
@@ -288,7 +284,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   tag: {
-    backgroundColor: colors.surfaceAlt, // Lighter beige
+    backgroundColor: colors.surfaceAlt,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -301,12 +297,12 @@ const styles = StyleSheet.create({
   tagText: {
     fontSize: 12,
     fontWeight: '600',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
   },
   description: {
     fontSize: 16,
     lineHeight: 24,
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
     marginBottom: 24,
   },
   infoGrid: {
@@ -316,7 +312,7 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     flex: 1,
-    backgroundColor: colors.surfaceAlt, // Lighter beige
+    backgroundColor: colors.surfaceAlt,
     padding: 16,
     borderRadius: 16,
     alignItems: 'center',
@@ -327,30 +323,30 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
     borderWidth: 1,
-    borderColor: 'rgba(10,51,35,0.08)', // Subtle dark green border
+    borderColor: 'rgba(10,51,35,0.08)',
   },
   infoLabel: {
     fontSize: 12,
     fontWeight: '600',
-    color: colors.textMuted, // Moss green dark
+    color: colors.textMuted,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   infoValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.textOnSurface, // Dark green text on beige
+    color: colors.textOnSurface,
     textAlign: 'center',
   },
   mapButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primary, // Dark green
+    backgroundColor: colors.primary,
     padding: 16,
     borderRadius: 16,
     marginTop: 24,
-    marginBottom: 24, // Alt boşluk eklendi
+    marginBottom: 24,
     gap: 12,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
@@ -358,12 +354,12 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
     borderWidth: 2,
-    borderColor: colors.accent, // Moss green border
+    borderColor: colors.accent,
   },
   mapButtonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
     flex: 1,
     textAlign: 'center',
   },
@@ -387,6 +383,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
 });

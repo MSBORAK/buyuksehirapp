@@ -34,7 +34,7 @@ export default function StoryModal({ story, visible, onClose }: StoryModalProps)
       <StatusBar barStyle="light-content" />
       <View style={styles.container}>
         <Image
-          source={{ uri: story.imageUrl }}
+          source={typeof story.imageUrl === 'string' ? { uri: story.imageUrl } : story.imageUrl}
           style={styles.image}
           resizeMode="cover"
         />
@@ -64,7 +64,7 @@ export default function StoryModal({ story, visible, onClose }: StoryModalProps)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary, // Off-Navy - Luxury dark background
+    backgroundColor: colors.primary,
   },
   image: {
     width,
@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.pale, // Pale text on dark background
+    color: colors.pale,
   },
 });

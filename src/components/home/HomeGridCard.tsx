@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin açık yüzey üzerinde
+    color: colors.textOnSurface,
     marginBottom: 6,
   },
   subtitle: {
     fontSize: 13,
-    color: colors.textMuted, // Koyu metin açık yüzey üzerinde
+    color: colors.textMuted,
     lineHeight: 18,
     flex: 1,
   },

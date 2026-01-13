@@ -180,10 +180,6 @@ export default function SocialFacilityDetailScreen() {
                 <Text style={styles.categoryLabel}>{getCategoryLabel()}</Text>
               </View>
             </View>
-            <View style={styles.ratingContainer}>
-              <Ionicons name="star" size={20} color={colors.accent} />
-              <Text style={styles.rating}>{facility.rating}</Text>
-            </View>
           </View>
 
           {/* Description */}

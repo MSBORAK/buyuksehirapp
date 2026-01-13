@@ -106,26 +106,26 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   scrollContent: {
-    paddingTop: 0, // Üst boşluk yok
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingTop: 0,
+    paddingBottom: 120,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingTop: 12, // Biraz aşağı indirildi
+    paddingTop: 12,
     paddingBottom: 8,
-    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde (header şeffaf)
+    color: colors.text,
   },
   headerSubtitle: {
     fontSize: 14,
-    color: colors.textMuted, // Açık metin koyu arka plan üzerinde
+    color: colors.textMuted,
     marginTop: 2,
   },
   headerButtons: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
     marginBottom: 16,
   },
   grid: {

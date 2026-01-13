@@ -62,7 +62,7 @@ export default function PharmacyScreen() {
         <TouchableOpacity
           style={styles.mapButton}
           onPress={() => {
-            // Open all pharmacies in map
+
             const coordinates = pharmacies
               .filter((p) => p.isOnDuty)
               .map((p) => p.location)
@@ -210,14 +210,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 16,
-    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
+    backgroundColor: 'transparent',
     gap: 12,
   },
   backButton: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: colors.cardShadow,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
   },
   headerSubtitle: {
     fontSize: 14,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: colors.cardShadow,
@@ -263,8 +263,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     paddingHorizontal: 20,
     paddingVertical: 12,
-    borderRadius: 24, // Daha oval
-    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 24,
+    backgroundColor: colors.surface,
     gap: 8,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 2 },
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   filterButtonActive: {
-    backgroundColor: colors.primary, // Dark green - aktif
+    backgroundColor: colors.primary,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -283,21 +283,21 @@ const styles = StyleSheet.create({
   filterText: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   filterTextActive: {
-    color: colors.pale, // Açık metin dark green üzerinde
+    color: colors.pale,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     marginHorizontal: 16,
     marginTop: 8,
     marginBottom: 8,
     paddingHorizontal: 16,
     paddingVertical: 14,
-    borderRadius: 20, // Daha yuvarlak
+    borderRadius: 20,
     gap: 12,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 4 },
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
     padding: 0,
   },
   scrollView: {
@@ -316,10 +316,10 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingBottom: 120,
   },
   pharmacyCard: {
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     borderRadius: 20,
     padding: 20,
     marginBottom: 12,
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
   },
   pharmacyCardOnDuty: {
     borderLeftWidth: 4,
-    borderLeftColor: colors.primary, // Dark green border
+    borderLeftColor: colors.primary,
   },
   pharmacyHeader: {
     marginBottom: 16,
@@ -348,13 +348,13 @@ const styles = StyleSheet.create({
   pharmacyName: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
     flex: 1,
   },
   onDutyBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.primary, // Dark green
+    backgroundColor: colors.primary,
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
   onDutyText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
   pharmacyAddress: {
     flexDirection: 'row',
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
   callButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.primary, // Dark green
+    backgroundColor: colors.primary,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 16,
@@ -417,7 +417,7 @@ const styles = StyleSheet.create({
   callButtonText: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
   emptyContainer: {
     flex: 1,
@@ -429,7 +429,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
   },
   emptySubtext: {
     fontSize: 14,

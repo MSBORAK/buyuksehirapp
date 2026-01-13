@@ -12,7 +12,7 @@ export interface Pharmacy {
     start: string;
     end: string;
   };
-  distance?: number; // in km
+  distance?: number;
 }
 
 export const pharmacies: Pharmacy[] = [

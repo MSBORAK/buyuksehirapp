@@ -6,8 +6,8 @@ import WeatherModal from './WeatherModal';
 
 export default function WeatherWidget() {
   const [modalVisible, setModalVisible] = useState(false);
-  
-  // Mock data - later integrate with OpenWeather API
+
+
   const temperature = 22;
   const condition = 'Açık';
   const location = 'Şanlıurfa';
@@ -74,11 +74,11 @@ const styles = StyleSheet.create({
   temperature: {
     fontSize: 32,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin açık yüzey üzerinde
+    color: colors.textOnSurface,
   },
   condition: {
     fontSize: 14,
-    color: colors.textMuted, // Koyu metin açık yüzey üzerinde
+    color: colors.textMuted,
   },
   rightSection: {
     flexDirection: 'row',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 14,
-    color: colors.textMuted, // Koyu metin açık yüzey üzerinde
+    color: colors.textMuted,
     fontWeight: '500',
   },
 });

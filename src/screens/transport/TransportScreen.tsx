@@ -13,7 +13,7 @@ import { colors } from '../../theme/colors';
 import { useSwipeGesture } from '../../hooks/useSwipeGesture';
 import { transportRoutes, UrfaKartInfo } from '../../data/transportData';
 
-// Mock UrfaKart data
+
 const mockUrfaKart: UrfaKartInfo = {
   cardNumber: '**** **** **** 1234',
   balance: 87.50,
@@ -289,12 +289,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 16,
-    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
   },
   headerSubtitle: {
     fontSize: 14,
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 14,
     borderRadius: 16,
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     gap: 8,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 2 },
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   tabActive: {
-    backgroundColor: colors.primary, // Dark green - aktif
+    backgroundColor: colors.primary,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -334,17 +334,17 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 13,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   tabTextActive: {
-    color: colors.pale, // Açık metin dark green üzerinde
+    color: colors.pale,
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingBottom: 120,
   },
   content: {
     gap: 16,
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 24,
     borderWidth: 2.5,
-    borderColor: colors.accent, // Moss green çerçeve
+    borderColor: colors.accent,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.2,
@@ -373,12 +373,12 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
   cardNumber: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
     letterSpacing: 2,
     marginBottom: 24,
   },
@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
   },
   balanceLabel: {
     fontSize: 14,
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
     opacity: 0.9,
     marginBottom: 8,
   },
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
     color: colors.gold,
   },
   transactionCard: {
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     borderRadius: 20,
     padding: 20,
     shadowColor: colors.cardShadow,
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
   transactionTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   transactionDetails: {
     gap: 12,
@@ -440,10 +440,10 @@ const styles = StyleSheet.create({
   transactionValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   transactionAmount: {
-    color: colors.primary, // Dark green - tutar rengi
+    color: colors.primary,
   },
   quickActions: {
     flexDirection: 'row',
@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
   },
   quickActionButton: {
     flex: 1,
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     borderRadius: 20,
     padding: 20,
     alignItems: 'center',
@@ -473,13 +473,13 @@ const styles = StyleSheet.create({
   quickActionText: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
     textAlign: 'center',
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderRadius: 20,
@@ -494,11 +494,11 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
     padding: 0,
   },
   routeCard: {
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     borderRadius: 20,
     padding: 20,
     shadowColor: colors.cardShadow,
@@ -524,7 +524,7 @@ const styles = StyleSheet.create({
   routeNumber: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
   routeInfo: {
     flex: 1,
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
   routeName: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   routeStops: {
     flexDirection: 'row',
@@ -559,11 +559,11 @@ const styles = StyleSheet.create({
   },
   routeDetailText: {
     fontSize: 13,
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
     fontWeight: '500',
   },
   rechargeCard: {
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     borderRadius: 20,
     padding: 32,
     alignItems: 'center',
@@ -577,7 +577,7 @@ const styles = StyleSheet.create({
   rechargeTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   rechargeDescription: {
     fontSize: 15,
@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
   rechargeOptionText: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   rechargeInfo: {
     flexDirection: 'row',

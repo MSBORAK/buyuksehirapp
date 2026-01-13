@@ -19,7 +19,7 @@ export default function TouristMapScreen() {
   const [language, setLanguage] = useState<'tr' | 'en' | 'ar'>('tr');
 
   const openAllSpotsInMap = () => {
-    // Open Google Maps with all locations
+
     const coordinates = touristSpots.map((spot) => spot.location).join('/');
     const url = `https://www.google.com/maps/dir/${coordinates}`;
     Linking.openURL(url);
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   mapButtonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.pale, // Pale text on primary background
+    color: colors.pale,
   },
   markersContainer: {
     ...StyleSheet.absoluteFillObject,

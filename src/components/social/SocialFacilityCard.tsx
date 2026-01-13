@@ -80,10 +80,6 @@ export default function SocialFacilityCard({
               </Text>
             </View>
           </View>
-          <View style={styles.ratingContainer}>
-            <Ionicons name="star" size={16} color={colors.accent} />
-            <Text style={styles.rating}>{facility.rating}</Text>
-          </View>
         </View>
 
         {/* Footer */}

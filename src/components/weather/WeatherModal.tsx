@@ -28,7 +28,7 @@ interface WeatherModalProps {
   location: string;
 }
 
-// Mock 5-day forecast data
+
 const forecastData: ForecastDay[] = [
   {
     day: 'Bugün',
@@ -161,19 +161,19 @@ export default function WeatherModal({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)', // Daha koyu overlay - arka plan daha az görünsün
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
     justifyContent: 'flex-end',
   },
   modalContainer: {
-    backgroundColor: 'rgba(10, 51, 35, 0.95)', // Daha opak - arka plan daha az görünsün
+    backgroundColor: 'rgba(10, 51, 35, 0.95)',
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     paddingTop: 24,
     paddingBottom: Platform.OS === 'ios' ? 40 : 24,
     maxHeight: '85%',
-    // Glass effect - border ve shadow
+
     borderTopWidth: 1.5,
-    borderTopColor: 'rgba(131, 153, 88, 0.3)', // Border
+    borderTopColor: 'rgba(131, 153, 88, 0.3)',
     borderLeftWidth: 1,
     borderLeftColor: 'rgba(131, 153, 88, 0.2)',
     borderRightWidth: 1,
@@ -183,13 +183,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 30,
     elevation: 20,
-    // Backdrop blur effect için ekstra katman
+
     ...Platform.select({
       ios: {
-        backgroundColor: 'rgba(10, 51, 35, 0.92)', // iOS için daha opak
+        backgroundColor: 'rgba(10, 51, 35, 0.92)',
       },
       android: {
-        backgroundColor: 'rgba(10, 51, 35, 0.95)', // Android için
+        backgroundColor: 'rgba(10, 51, 35, 0.95)',
       },
     }),
   },
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(131, 153, 88, 0.15)', // Daha saydam border - glass effect
+    borderBottomColor: 'rgba(131, 153, 88, 0.15)',
   },
   headerContent: {
     flexDirection: 'row',
@@ -213,37 +213,37 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: colors.pale, // Beige text
+    color: colors.pale,
   },
   headerLocation: {
     fontSize: 14,
-    color: colors.textMuted, // Moss green muted text
+    color: colors.textMuted,
   },
   closeButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'rgba(131, 153, 88, 0.25)', // Yarı saydam moss green - glass effect
+    backgroundColor: 'rgba(131, 153, 88, 0.25)',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(131, 153, 88, 0.3)', // Glass border
+    borderColor: 'rgba(131, 153, 88, 0.3)',
   },
   currentWeather: {
     alignItems: 'center',
     paddingVertical: 24,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(131, 153, 88, 0.15)', // Daha saydam border - glass effect
+    borderBottomColor: 'rgba(131, 153, 88, 0.15)',
   },
   currentTemp: {
     fontSize: 64,
     fontWeight: '700',
-    color: colors.accent, // Moss green
+    color: colors.accent,
     marginBottom: 8,
   },
   currentCondition: {
     fontSize: 18,
-    color: colors.pale, // Beige text
+    color: colors.pale,
     fontWeight: '500',
   },
   forecastContainer: {
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   forecastTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.pale, // Beige text
+    color: colors.pale,
     marginBottom: 16,
   },
   forecastDay: {
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(131, 153, 88, 0.1)', // Daha saydam border - glass effect
+    borderBottomColor: 'rgba(131, 153, 88, 0.1)',
   },
   forecastDayLeft: {
     flexDirection: 'row',
@@ -277,11 +277,11 @@ const styles = StyleSheet.create({
   dayName: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.pale, // Beige text
+    color: colors.pale,
   },
   dayDate: {
     fontSize: 12,
-    color: colors.textMuted, // Moss green muted text
+    color: colors.textMuted,
   },
   forecastDayRight: {
     alignItems: 'flex-end',
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
   },
   forecastCondition: {
     fontSize: 13,
-    color: colors.textMuted, // Moss green muted text
+    color: colors.textMuted,
     textAlign: 'right',
   },
   tempRange: {
@@ -300,11 +300,11 @@ const styles = StyleSheet.create({
   highTemp: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.pale, // Beige text
+    color: colors.pale,
   },
   lowTemp: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.textMuted, // Moss green muted text
+    color: colors.textMuted,
   },
 });

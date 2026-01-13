@@ -49,11 +49,11 @@ export default function EventCard({
       case 'theater':
         return colors.gold;
       case 'exhibition':
-        return colors.secondary; // Midnight green
+        return colors.secondary;
       case 'festival':
-        return colors.rosy; // Rosy brown
+        return colors.rosy;
       case 'workshop':
-        return colors.accent; // Moss green
+        return colors.accent;
       default:
         return colors.textMuted;
     }
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   featuredText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   categoryBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -209,18 +209,18 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde (overlay üzerinde ama badge içinde)
+    color: colors.textOnSurface,
   },
   title: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
     marginBottom: 8,
     lineHeight: 26,
   },
   description: {
     fontSize: 14,
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
     opacity: 0.95,
     marginBottom: 16,
     lineHeight: 20,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
     opacity: 0.9,
   },
 });

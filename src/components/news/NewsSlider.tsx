@@ -50,7 +50,7 @@ export default function NewsSlider() {
             activeOpacity={0.9}
           >
             <Image
-              source={{ uri: item.imageUrl }}
+              source={typeof item.imageUrl === 'string' ? { uri: item.imageUrl } : item.imageUrl}
               style={styles.newsImage}
               resizeMode="cover"
             />
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
   },
   moreText: {
     fontSize: 14,
-    color: colors.accentLight, // Moss green light - Koyu arka plan üzerinde görünür
+    color: colors.accentLight,
     fontWeight: '600',
   },
   scrollContent: {
@@ -139,12 +139,12 @@ const styles = StyleSheet.create({
   newsTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
     marginBottom: 8,
   },
   newsSummary: {
     fontSize: 14,
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
     opacity: 0.9,
     marginBottom: 12,
   },
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   newsDate: {
     fontSize: 12,
-    color: colors.pale, // Pale text on dark overlay
+    color: colors.pale,
     opacity: 0.8,
   },
   pagination: {

@@ -2,7 +2,7 @@ export interface Story {
   id: string;
   title: string;
   category: 'message' | 'event' | 'announcement' | 'gallery';
-  imageUrl: string;
+  imageUrl: string | number;
   videoUrl?: string;
 }
 
@@ -11,25 +11,25 @@ export const stories: Story[] = [
     id: '1',
     title: "Başkan'ın Mesajı",
     category: 'message',
-    imageUrl: 'https://picsum.photos/400/800?random=1',
+    imageUrl: require('../../assets/images/balikligol.png'),
   },
   {
     id: '2',
     title: 'Günün Etkinliği',
     category: 'event',
-    imageUrl: 'https://picsum.photos/400/800?random=2',
+    imageUrl: require('../../assets/images/balikligol.png'),
   },
   {
     id: '3',
     title: 'Acil Duyurular',
     category: 'announcement',
-    imageUrl: 'https://picsum.photos/400/800?random=3',
+    imageUrl: require('../../assets/images/balikligol.png'),
   },
   {
     id: '4',
     title: 'Şehirden Kareler',
     category: 'gallery',
-    imageUrl: 'https://picsum.photos/400/800?random=4',
+    imageUrl: require('../../assets/images/balikligol.png'),
   },
 ];
 
@@ -37,7 +37,7 @@ export interface News {
   id: string;
   title: string;
   summary: string;
-  imageUrl: string;
+  imageUrl: string | number;
   date: string;
 }
 
@@ -46,21 +46,21 @@ export const news: News[] = [
     id: '1',
     title: 'Şanlıurfa\'da Yeni Kültür Merkezi Açıldı',
     summary: 'Modern sanat galerisi ve etkinlik alanları ile hizmet vermeye başladı.',
-    imageUrl: 'https://picsum.photos/800/600?random=10',
+    imageUrl: require('../../assets/images/gobeklitepe.png'),
     date: '2024-01-15',
   },
   {
     id: '2',
     title: 'Göbeklitepe Ziyaretçi Rekoru Kırdı',
     summary: 'Bu yıl 2 milyon ziyaretçi ile tarihi rekor kırıldı.',
-    imageUrl: 'https://picsum.photos/800/600?random=11',
+    imageUrl: require('../../assets/images/balikligol.png'),
     date: '2024-01-14',
   },
   {
     id: '3',
     title: 'Şehir Merkezinde Yeni Park Alanı',
     summary: 'Vatandaşlarımızın hizmetine sunulan modern park alanı büyük ilgi görüyor.',
-    imageUrl: 'https://picsum.photos/800/600?random=12',
+    imageUrl: require('../../assets/images/kale.png'),
     date: '2024-01-13',
   },
 ];
@@ -83,8 +83,8 @@ export interface TouristSpot {
     en: string;
     ar: string;
   };
-  imageUrl: string;
-  images: string[];
+  imageUrl: string | number;
+  images: (string | number)[];
   location: {
     latitude: number;
     longitude: number;
@@ -119,11 +119,11 @@ export const touristSpots: TouristSpot[] = [
       en: 'World\'s oldest temple complex, UNESCO World Heritage',
       ar: 'أقدم مجمع معابد في العالم، تراث عالمي لليونسكو',
     },
-    imageUrl: 'https://picsum.photos/800/600?random=20',
+    imageUrl: require('../../assets/images/gobeklitepe.png'),
     images: [
-      'https://picsum.photos/800/600?random=20',
-      'https://picsum.photos/800/600?random=21',
-      'https://picsum.photos/800/600?random=22',
+      require('../../assets/images/gobeklitepe.png'),
+      require('../../assets/images/gobeklitepe.png'),
+      require('../../assets/images/gobeklitepe.png'),
     ],
     location: {
       latitude: 37.2233,
@@ -157,11 +157,11 @@ export const touristSpots: TouristSpot[] = [
       en: 'Sacred site of Prophet Abraham, historic lake',
       ar: 'المكان المقدس للنبي إبراهيم، بحيرة تاريخية',
     },
-    imageUrl: 'https://picsum.photos/800/600?random=30',
+    imageUrl: require('../../assets/images/balikligol.png'),
     images: [
-      'https://picsum.photos/800/600?random=30',
-      'https://picsum.photos/800/600?random=31',
-      'https://picsum.photos/800/600?random=32',
+      require('../../assets/images/balikligol.png'),
+      require('../../assets/images/balikligol.png'),
+      require('../../assets/images/balikligol.png'),
     ],
     location: {
       latitude: 37.1583,
@@ -195,10 +195,10 @@ export const touristSpots: TouristSpot[] = [
       en: 'Historic castle, panoramic view',
       ar: 'قلعة تاريخية، منظر بانورامي',
     },
-    imageUrl: 'https://picsum.photos/800/600?random=40',
+    imageUrl: require('../../assets/images/kale.png'),
     images: [
-      'https://picsum.photos/800/600?random=40',
-      'https://picsum.photos/800/600?random=41',
+      require('../../assets/images/kale.png'),
+      require('../../assets/images/kale.png'),
     ],
     location: {
       latitude: 37.1589,
@@ -232,11 +232,11 @@ export const touristSpots: TouristSpot[] = [
       en: 'Land of black roses, boat tours, natural beauty',
       ar: 'أرض الورود السوداء، جولات بالقوارب، جمال طبيعي',
     },
-    imageUrl: 'https://picsum.photos/800/600?random=50',
+    imageUrl: require('../../assets/images/halfeti.png'),
     images: [
-      'https://picsum.photos/800/600?random=50',
-      'https://picsum.photos/800/600?random=51',
-      'https://picsum.photos/800/600?random=52',
+      require('../../assets/images/halfeti.png'),
+      require('../../assets/images/halfeti.png'),
+      require('../../assets/images/halfeti.png'),
     ],
     location: {
       latitude: 37.2453,

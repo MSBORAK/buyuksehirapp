@@ -62,7 +62,7 @@ export default function TouristSpotCard({
       activeOpacity={0.9}
     >
       <Image
-        source={{ uri: spot.imageUrl }}
+        source={typeof spot.imageUrl === 'string' ? { uri: spot.imageUrl } : spot.imageUrl}
         style={styles.image}
         resizeMode="cover"
       />
@@ -81,10 +81,6 @@ export default function TouristSpotCard({
                 {spot.category === 'natural' && 'Doğal'}
                 {spot.category === 'cultural' && 'Kültürel'}
               </Text>
-            </View>
-            <View style={styles.ratingContainer}>
-              <Ionicons name="star" size={16} color={colors.gold} />
-              <Text style={styles.rating}>{spot.rating}</Text>
             </View>
           </View>
 
@@ -146,7 +142,7 @@ const styles = StyleSheet.create({
   categoryBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -160,12 +156,12 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface, // Beige yüzey (beyaz yerine)
+    backgroundColor: colors.surface,
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 12,
@@ -179,7 +175,7 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   name: {
     fontSize: 24,

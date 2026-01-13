@@ -26,7 +26,7 @@ export default function SettingsScreen() {
     { code: 'ar', label: 'العربية' },
   ];
 
-  type SettingItem = 
+  type SettingItem =
     | {
         icon: string;
         label: string;
@@ -84,28 +84,28 @@ export default function SettingsScreen() {
           icon: 'information-circle-outline',
           label: 'Uygulama Hakkında',
           onPress: () => {
-            // Navigate to about screen
+
           },
         },
         {
           icon: 'document-text-outline',
           label: 'Gizlilik Politikası',
           onPress: () => {
-            // Navigate to privacy policy
+
           },
         },
         {
           icon: 'document-outline',
           label: 'Kullanım Koşulları',
           onPress: () => {
-            // Navigate to terms
+
           },
         },
         {
           icon: 'help-circle-outline',
           label: 'Yardım & Destek',
           onPress: () => {
-            // Navigate to help
+
           },
         },
       ],
@@ -117,14 +117,14 @@ export default function SettingsScreen() {
           icon: 'person-outline',
           label: 'Profil',
           onPress: () => {
-            // Navigate to profile
+
           },
         },
         {
           icon: 'log-out-outline',
           label: 'Çıkış Yap',
           onPress: () => {
-            // Handle logout
+
           },
           isDestructive: true,
         },
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingBottom: 120,
   },
   section: {
     marginBottom: 24,

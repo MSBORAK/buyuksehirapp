@@ -13,11 +13,11 @@ const navTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: colors.background, // Dark green - Koyu doğal background
-    card: colors.surface, // Beige - Açık kartlar koyu arka plan üzerinde
-    text: colors.text, // Beige - Açık metin koyu arka plan üzerinde
-    border: colors.border, // Moss green toned border
-    notification: colors.accent, // Moss green - Notification badge
+    background: colors.background,
+    card: colors.surface,
+    text: colors.text,
+    border: colors.border,
+    notification: colors.accent,
   },
 };
 

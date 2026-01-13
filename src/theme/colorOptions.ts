@@ -1,12 +1,12 @@
-// Renk Paleti Seçenekleri - Belediye Uygulaması İçin
 
-// ============================================
-// SEÇENEK 1: LUXURY (Şu Anki - Prestijli)
-// ============================================
+
+
+
+
 export const luxuryColors = {
-  primary: '#004225', // Koyu kurumsal yeşil
+  primary: '#004225',
   primaryLight: '#136530',
-  gold: '#CDA434', // Altın sarısı
+  gold: '#CDA434',
   background: '#F9F9F9',
   surface: '#FFFFFF',
   surfaceAlt: '#F2F4F3',
@@ -16,16 +16,16 @@ export const luxuryColors = {
   cardShadow: 'rgba(0,0,0,0.1)',
 };
 
-// Artıları: Prestijli, profesyonel, güvenilir, kurumsal
-// Eksileri: Biraz ağır, mesafeli
 
-// ============================================
-// SEÇENEK 2: PASTEL (Modern & Erişilebilir)
-// ============================================
+
+
+
+
+
 export const pastelColors = {
-  primary: '#4A90A4', // Yumuşak mavi-yeşil
+  primary: '#4A90A4',
   primaryLight: '#6BB3C7',
-  gold: '#F4A261', // Pastel turuncu-altın
+  gold: '#F4A261',
   background: '#F8F9FA',
   surface: '#FFFFFF',
   surfaceAlt: '#F0F4F8',
@@ -35,44 +35,44 @@ export const pastelColors = {
   cardShadow: 'rgba(74,144,164,0.15)',
 };
 
-// Artıları: Modern, dostane, erişilebilir, fresh
-// Eksileri: Daha az prestijli, bazıları için fazla hafif
 
-// ============================================
-// SEÇENEK 3: HYBRID (ÖNERİLEN - En Dengeli)
-// ============================================
+
+
+
+
+
 export const hybridColors = {
-  primary: '#005A3C', // Biraz daha yumuşak yeşil (luxury'den)
-  primaryLight: '#2D7A5F', // Daha açık, pastel ton
-  gold: '#D4AF37', // Zengin altın (luxury'den)
-  accent: '#6BB3C7', // Pastel mavi (fresh hissi)
-  background: '#FAFBFC', // Çok hafif gri-beyaz
+  primary: '#005A3C',
+  primaryLight: '#2D7A5F',
+  gold: '#D4AF37',
+  accent: '#6BB3C7',
+  background: '#FAFBFC',
   surface: '#FFFFFF',
-  surfaceAlt: '#F5F7F9', // Yumuşak pastel gri
-  text: '#1A2E35', // Koyu ama yumuşak
-  textMuted: '#6B7C7F', // Pastel gri
+  surfaceAlt: '#F5F7F9',
+  text: '#1A2E35',
+  textMuted: '#6B7C7F',
   hairline: 'rgba(0,0,0,0.06)',
-  cardShadow: 'rgba(0,90,60,0.12)', // Yeşil tonlu shadow
-  success: '#4CAF50', // Pastel yeşil
-  info: '#2196F3', // Pastel mavi
-  warning: '#FF9800', // Pastel turuncu
+  cardShadow: 'rgba(0,90,60,0.12)',
+  success: '#4CAF50',
+  info: '#2196F3',
+  warning: '#FF9800',
 };
 
-// Artıları: 
-// - Prestijli ama erişilebilir
-// - Modern ve fresh
-// - Hem turistlere hem yerel halka hitap eder
-// - Güvenilir ama dostane
-// - En dengeli seçenek
 
-// ============================================
-// SEÇENEK 4: PREMIUM PASTEL (Lüks Pastel)
-// ============================================
+
+
+
+
+
+
+
+
+
 export const premiumPastelColors = {
-  primary: '#5B8A7D', // Zümrüt yeşili (pastel ama zengin)
+  primary: '#5B8A7D',
   primaryLight: '#7FA99B',
-  gold: '#E8C547', // Yumuşak altın
-  accent: '#A8D5BA', // Çok açık yeşil
+  gold: '#E8C547',
+  accent: '#A8D5BA',
   background: '#FEFEFE',
   surface: '#FFFFFF',
   surfaceAlt: '#F7F9F8',
@@ -82,12 +82,12 @@ export const premiumPastelColors = {
   cardShadow: 'rgba(91,138,125,0.15)',
 };
 
-// Artıları: Lüks ama yumuşak, modern, fresh
-// Eksileri: Biraz daha az kurumsal
 
-// ============================================
-// KARŞILAŞTIRMA TABLOSU
-// ============================================
+
+
+
+
+
 /*
 | Özellik          | Luxury | Pastel | Hybrid | Premium Pastel |
 |------------------|--------|--------|--------|----------------|
@@ -100,5 +100,5 @@ export const premiumPastelColors = {
 | Kurumsal         | ⭐⭐⭐⭐⭐ | ⭐⭐    | ⭐⭐⭐⭐  | ⭐⭐⭐           |
 */
 
-// ÖNERİ: Hybrid veya Premium Pastel
-// Belediye uygulaması için en dengeli seçenekler bunlar.
+
+

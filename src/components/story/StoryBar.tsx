@@ -77,11 +77,11 @@ export default function StoryBar() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'transparent', // Arka plan yok - şeffaf
+    backgroundColor: 'transparent',
     paddingVertical: 16,
     marginHorizontal: 16,
     marginTop: 12,
-    // Border radius ve shadow kaldırıldı - sadece içerik
+
   },
   scrollContent: {
     paddingHorizontal: 16,
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 8,
     elevation: 4,
-    // Renkli border - Moss green vurgu
+
     borderWidth: 2.5,
-    borderColor: colors.accent, // Moss green border
+    borderColor: colors.accent,
   },
   storyGradient: {
     width: STORY_SIZE - 12,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   storyTitle: {
     fontSize: 12,
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
     textAlign: 'center',
     maxWidth: STORY_SIZE + 16,
   },

@@ -209,12 +209,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 16,
-    backgroundColor: 'transparent', // Şeffaf - arka planla uyumlu
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
   },
   headerSubtitle: {
     fontSize: 14,
@@ -228,8 +228,8 @@ const styles = StyleSheet.create({
   languageButton: {
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 24, // Daha oval
-    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 24,
+    backgroundColor: colors.surface,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   languageButtonActive: {
-    backgroundColor: colors.primary, // Dark green - aktif
+    backgroundColor: colors.primary,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -247,21 +247,21 @@ const styles = StyleSheet.create({
   languageText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   languageTextActive: {
-    color: colors.pale, // Açık metin dark green üzerinde
+    color: colors.pale,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface, // Beige yüzey
+    backgroundColor: colors.surface,
     marginHorizontal: 16,
     marginTop: 12,
     marginBottom: 8,
     paddingHorizontal: 16,
     paddingVertical: 14,
-    borderRadius: 20, // Daha yuvarlak
+    borderRadius: 20,
     gap: 12,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 4 },
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
     padding: 0,
   },
   categoryContainer: {
@@ -286,8 +286,8 @@ const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderRadius: 24, // Daha oval
-    backgroundColor: colors.surface, // Beige yüzey
+    borderRadius: 24,
+    backgroundColor: colors.surface,
     shadowColor: colors.cardShadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   categoryButtonActive: {
-    backgroundColor: colors.primary, // Dark green - aktif
+    backgroundColor: colors.primary,
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -305,17 +305,17 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 14,
     fontWeight: '700',
-    color: colors.textOnSurface, // Koyu metin beige yüzey üzerinde
+    color: colors.textOnSurface,
   },
   categoryTextActive: {
-    color: colors.pale, // Açık metin dark green üzerinde
+    color: colors.pale,
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 120, // Bottom tab bar için yeterli boşluk
+    paddingBottom: 120,
   },
   section: {
     marginBottom: 24,
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
     marginBottom: 16,
   },
   emptyContainer: {
@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.text, // Açık metin koyu arka plan üzerinde
+    color: colors.text,
   },
   emptySubtext: {
     fontSize: 14,
